@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>橙果教育管理信息系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="OrangeManagementBackGround">
+    <meta name="author" content="Raymond.W">
+
+    <!-- 样式表 -->
+    <link href="~/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="~/css/charisma-app.css" rel="stylesheet">
+    <link href="~/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet">
+    <link href="~/bower_components/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
+    <link href="~/bower_components/chosen/chosen.min.css" rel="stylesheet">
+    <link href="~/bower_components/colorbox/example3/colorbox.css" rel="stylesheet">
+    <link href="~/bower_components/responsive-tables/responsive-tables.css" rel="stylesheet">
+    <link href="~/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css" rel="stylesheet">
+    <link href="~/css/jquery.noty.css" rel="stylesheet">
+    <link href="~/css/noty_theme_default.css" rel="stylesheet">
+    <link href="~/css/elfinder.min.css" rel="stylesheet">
+    <link href="~/css/elfinder.theme.css" rel="stylesheet">
+    <link href="~/css/jquery.iphone.toggle.css" rel="stylesheet">
+    <link href="~/css/uploadify.css" rel="stylesheet">
+    <link href="~/css/animate.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="~/bower_components/jquery/jquery.min.js"></script>
+
+    <!-- 如果浏览器为IE9进行引入 -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- 企业图标 -->
+    <link rel="shortcut icon" href="~/img/favicon.ico">
+
+</head>
+<body>
+    <!-- topbar 部分 -->
+    @Html.Partial("~/Views/Partials/Topbar.cshtml")
+    <!-- topbar 部分 -->
+    <div class="ch-container">
+        <div class="row">
+            <!-- 左侧菜单 部分 -->
+            @Html.Partial("~/Views/Partials/LeftMenu.cshtml")
+            <!-- 左侧菜单 部分 -->
+            <div id="content" class="col-lg-10 col-sm-10">
+                <!-- 简单导航 部分 -->
+                <div>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">首页</a>
+                        </li>
+                        <li>
+                            <a href="#">通告版</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 简单导航 部分 -->
+                <!-- 子页内容 部分 -->
+                @RenderBody()
+                <!-- 子页内容 部分 -->
+            </div>
+        </div>
+        <hr>
+        <!-- 页脚 部分 -->
+        @Html.Partial("~/Views/Partials/Foot.cshtml")
+        <!-- 页脚 部分 -->
+    </div>
+   <!-- 外部 javascript文件引入 -->
+    <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- cookie 管理类库 -->
+    <script src="~/js/jquery.cookie.js"></script>
+    <!-- 课程表 插件 -->
+    <script src="~/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <!--数据表插件 -->
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <!-- 选择/下拉列表 -->
+    <script src="~/bower_components/chosen/chosen.jquery.min.js"></script>
+    <!-- 图像视觉插件 -->
+    <script src="~/bower_components/colorbox/jquery.colorbox-min.js"></script>
+    <!-- 通知插件 -->
+    <script src="~/js/jquery.noty.js"></script>
+    <!-- 制作表单响应 -->
+    <script src="~/bower_components/responsive-tables/responsive-tables.js"></script>
+    <!-- tour 插件 -->
+    <script src="~/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+    <!-- star rating 插件 -->
+    <script src="~/js/jquery.raty.min.js"></script>
+    <!-- IOS样式切换 -->
+    <script src="~/js/jquery.iphone.toggle.js"></script>
+    <!-- 自动伸缩文本插件 -->
+    <script src="~/js/jquery.autogrow-textarea.js"></script>
+    <!-- 多文件上传插件 -->
+    <script src="~/js/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js ajax调用跨浏览器状态改变 -->
+    <script src="~/js/jquery.history.js"></script>
+    <!-- mystyle -->
+    <script src="~/js/charisma.js?@DateTime.Now.ToString("f")"></script>
+</body>
+</html>

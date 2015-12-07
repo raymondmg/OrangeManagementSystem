@@ -1,0 +1,74 @@
+﻿@using OrangeManagement.Models
+@{
+    var db = new DbHelper();
+    
+    var campusNameArray = db.CampusModule.ToArray();
+}
+
+<!-- leftmenu 部分 -->
+<div class="col-sm-2 col-lg-2">
+    <div class="sidebar-nav">
+        <div class="nav-canvas">
+            <div class="nav-sm nav nav-stacked">
+            </div>
+            <ul class="nav nav-pills nav-stacked main-menu">
+                <li class="nav-header">最新信息</li>
+                <li>
+                    <a class="ajax-link" href="#"><i class="glyphicon glyphicon-home"></i><span> 通知版</span></a>
+                </li>
+                <li>
+                    <a class="ajax-link" href="#"><i class="glyphicon glyphicon-eye-open"></i><span>企业新闻</span></a>
+                </li>
+
+                <li class="nav-header hidden-md">总部校区</li>
+
+                <li class="accordion">
+                    <a href="#"><i class="glyphicon glyphicon-plus"></i><span>分部校区信息</span></a>
+                    <ul class="nav nav-pills nav-stacked">
+
+                        @{
+                            foreach (var i in campusNameArray)
+                            {
+                                var href = "CampusInfo?cname=" + i.CampusName;
+                                
+                                <li><a href=@href>@i.CampusName</a></li>
+                            }
+                        }                
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="ajax-link" href="CampusManagement"><i class="glyphicon glyphicon-briefcase"></i><span>校区管理</span></a>
+                </li>
+
+                <li class="nav-header hidden-md">前台</li>
+                <li>
+                    <a class="ajax-link" href="#"><i class="glyphicon glyphicon-eye-open"></i><span>前台信息</span></a>
+                </li>
+                <li class="nav-header hidden-md">市场部</li>
+                <li>
+                    <a class="ajax-link" href="#"><i class="glyphicon glyphicon-eye-open"></i><span>市场信息</span></a>
+                </li>
+                <li class="nav-header hidden-md">营运部</li>
+                <li>
+                    <a class="ajax-link" href="#"><i class="glyphicon glyphicon-eye-open"></i><span>营运信息</span></a>
+                </li>
+                <li class="nav-header hidden-md">教务部</li>
+                <li>
+                    <a class="ajax-link" href="#"><i class="glyphicon glyphicon-eye-open"></i><span>教务信息</span></a>
+                </li>
+                <li class="nav-header hidden-md">人力资源部</li>
+                <li>
+                    <a class="ajax-link" href="#"><i class="glyphicon glyphicon-eye-open"></i><span>人力资源信息</span></a>
+                </li>
+                <li class="nav-header hidden-md">财务部</li>
+                <li>
+                    <a class="ajax-link" href="#"><i class="glyphicon glyphicon-eye-open"></i><span>财务信息</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- leftmenu 部分 -->
+
+

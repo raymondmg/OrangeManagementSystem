@@ -1,0 +1,270 @@
+﻿@using OrangeManagement.Models
+@model OrangeManagement.Models.CampusModel
+@{
+    ViewBag.Title = "校区管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var db = new DbHelper();
+    var campus = db.CampusModule.ToArray();
+    
+    var count = 1;
+    var campusInfos = campus.Cast<CampusModel>().ToDictionary(item => count++);
+
+}
+@*设置信息模态框*@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>设置</h3>
+            </div>
+            <div class="modal-body">
+                <p>当前模块信息设置</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+                <a class="btn btn-primary" data-dismiss="modal">保存</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*删除校区*@
+<div class="modal fade" id="deleteCapmus" tabindex="-1" role="dialog" aria-labelledby="deleteCapmusLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("DeleteCampus", "BackGround"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <form role="form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h3>删除校区</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <p id="info"></p>
+                                <input id="infoid" class="control-label" hidden />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+                            <button type="submit" class="btn btn-primary">删除</button>
+                        </div>
+                    </form>
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>
+
+
+@*新建校区模态框*@
+<div class="modal fade" id="createNewCapmus" tabindex="-1" role="dialog" aria-labelledby="createNewCapmusLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>新建校区</h3>
+            </div>
+@using (Html.BeginForm("CreateNewCampus", "BackGround", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+            <form role="form">
+                <div class="modal-body">
+                    <div class="box-content">
+                        <div class="form-group">
+                            @Html.Label("校区名称")
+                            @Html.TextBoxFor(m => m.CampusName, new {@class = "form-control", @placeholder = "请输入校区名称"})  
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("校区编号")
+                            @Html.TextBoxFor(m => m.CampusNumber, new {@class = "form-control", @placeholder = "请输入校区编号"})
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("校区简介")
+                            @Html.TextBoxFor(m => m.CampusDescribe, new {@class = "form-control", @placeholder = "请输入校区简介"})
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("校区地址")
+                            @Html.TextBoxFor(m => m.CampusAddress, new {@class = "form-control", @placeholder = "请输入校区地址"})
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer form-group">
+                    <a href="#" class="btn btn-default" data-dismiss="modal" >关闭</a>
+                    <button type="submit" class="btn btn-primary">新建</button>
+                </div>
+            </form>
+        </fieldset>
+        }
+</div>
+    </div>
+</div>
+
+
+@*编辑校区模态框*@
+<div class="modal fade" id="editCapmus" tabindex="-1" role="dialog" aria-labelledby="editCapmusLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>编辑校区信息</h3>
+            </div>
+            @using (Html.BeginForm("EditCampus", "BackGround", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <form role="form">
+                        <div class="modal-body">
+                            <div class="box-content">
+                                <div class="form-group">
+                                    @Html.Label("校区ID")
+                                    @Html.TextBoxFor(m => m.CampusId, new { @id = "cid", @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("校区名称")
+                                    @Html.TextBoxFor(m => m.CampusName, new {@id = "cname", @class = "form-control", @placeholder = "请输入校区名称"})
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("校区编号")
+                                    @Html.TextBoxFor(m => m.CampusNumber, new {@id = "cnumber", @class = "form-control", @placeholder = "请输入校区编号"})
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("校区简介")
+                                    @Html.TextBoxFor(m => m.CampusDescribe, new {@id = "cdes", @class = "form-control", @placeholder = "请输入校区简介"})
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("校区地址")
+                                    @Html.TextBoxFor(m => m.CampusAddress, new {@id = "caddress", @class = "form-control", @placeholder = "请输入校区地址"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well">
+                <h2>
+                    <i class="glyphicon glyphicon-info-sign"></i> 校区通知
+                </h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content row">
+                <div class="col-lg-7 col-md-12">
+                    <h1>
+                        校区管理模块开发计划 <br>
+                        <small>当前开发内容：新建校区功能以及多校区信息管理</small>
+                    </h1>
+
+                    <p class="center-block download-buttons">
+                        <a href="#" class="btn btn-primary btn-lg" id="createNewCapmusBtn">
+                            <i class="glyphicon glyphicon-briefcase glyphicon-white"></i> 新建校区
+                        </a>
+                    </p>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-briefcase"></i> 校区管理</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>校区名称</th>
+                            <th>校区编号</th>
+                            <th>校区简介</th>
+                            <th>校区地址</th>
+                            <th>修改操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @{
+                        foreach (var c in campusInfos)
+                        {
+                            <tr>
+                                <td>@c.Key</td>
+                                <td class="center">@c.Value.CampusName</td>
+                                <td class="center">@c.Value.CampusNumber</td>
+                                <td class="center">@c.Value.CampusDescribe</td>
+                                <td class="center">@c.Value.CampusAddress</td>
+                                <td class="center">
+                                    <a class="btn btn-success">
+                                        <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                        查看校区
+                                    </a>
+                                    <a class="btn btn-info" data-toggle="modal" data-target="#editCapmus" data-cid=@c.Value.CampusId data-cname=@c.Value.CampusName data-cnumber=@c.Value.CampusNumber data-cdes=@c.Value.CampusDescribe data-caddress=@c.Value.CampusAddress>
+                                        <i class="glyphicon glyphicon-edit icon-white"></i>
+                                        编辑
+                                    </a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteCapmus" data-cid=@c.Value.CampusId data-cname=@c.Value.CampusName>
+                                        <i class="glyphicon glyphicon-trash icon-white"></i>
+                                        删除
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "BackGroundHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["LoginOrNot"] == null)
+    {
+        Response.Redirect("Login");
+    }
+}
+
+@*设置信息模态框*@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>设置</h3>
+            </div>
+            <div class="modal-body">
+                <p>当前模块信息设置</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+                <a href="#" class="btn btn-primary" data-dismiss="modal">保存</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well">
+                <h2>
+                    <i class="glyphicon glyphicon-info-sign"></i> 最新通知
+                </h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content row">
+                <div class="col-lg-7 col-md-12">
+                    <h1>
+                        管理信息系统开发计划 <br>
+                        <small>当前开发内容：页面框架设计与完善</small>
+                    </h1>
+                    <p>
+                        页面框架设计：左右排版样式
+                    </p>
+
+                    <p>
+                        <b>
+                            样式颜色基调：淡蓝色
+                        </b>
+                    </p>
+
+                    <p class="center-block download-buttons">
+                        <a href="#" class="btn btn-primary btn-lg">
+                            <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i> 获取设计样式图1
+                        </a>
+                        <a href="#" class="btn btn-default btn-lg">
+                            <i class="glyphicon glyphicon-download-alt"></i> 获取设计样式图2
+                        </a>
+                    </p>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-calendar"></i> 课程表</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content">
+
+
+                <div id="calendar"></div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "CampusInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string campusName = null;
+    if (Request.QueryString["cname"] != null)
+    {
+        campusName = Request.QueryString["cname"];
+    }
+}
+
+<h2>@campusName</h2>
